@@ -1,4 +1,11 @@
 <resources>
-    <string name="app_name">AlbumsLibrary</string>
+    <string name="app_name">Last Trips</string>
     <string name="image">image</string>
+    <string name="to">to</string>
+    <string name="pilot_avatar">Pilot Avatar</string>
+    <string name="departure">Departure</string>
+    <string name="arrival">Arrival</string>
+    <string name="distance">Distance</string>
+    <string name="duration">Duration</string>
+    <string name="pilot_rating">Pilot Rating</string>
 </resources>

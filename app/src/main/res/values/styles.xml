@@ -6,6 +6,34 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:windowBackground">@drawable/background</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Subheadline" parent="TextAppearance.AppCompat.Subhead"/>
+
+    <style name="AppTheme.TextAppearance.Subheadline.Bold">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ImageRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingbar_selector</item>
+        <item name="android:indeterminateDrawable">@drawable/ratingbar_selector</item>
+        <item name="android:minHeight">40dp</item>
+        <item name="android:maxHeight">40dp</item>
+    </style>
+
+    <style name="App.TextAppearance.Body" parent="TextAppearance.AppCompat.Body1"/>
+
+    <style name="App.TextAppearance.Body.Regular">
+        <item name="android:textColor">@color/warm_grey</item>
     </style>
 
 </resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="16dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <ImageView
+        android:id="@+id/pilotAvatarImageView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="@dimen/default_margin_double"
+        android:layout_marginLeft="@dimen/default_margin_double"
+        android:layout_marginStart="@dimen/default_margin_double"
+        android:layout_marginTop="@dimen/default_margin_double"
+        android:contentDescription="@string/image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/pilotNameTextView"
+        style="@style/AppTheme.TextAppearance.Subheadline.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin_double"
+        android:layout_marginStart="@dimen/default_margin_double"
+        android:layout_marginTop="@dimen/default_margin_double"
+        app:layout_constraintStart_toEndOf="@id/pilotAvatarImageView"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Dark Vador" />
+
+    <TextView
+        android:id="@+id/pickUpTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:lineSpacingExtra="2sp"
+        style="@style/App.TextAppearance.Body.Regular"
+        app:layout_constraintBottom_toBottomOf="@id/pilotAvatarImageView"
+        app:layout_constraintStart_toEndOf="@id/pilotAvatarImageView"
+        app:layout_constraintTop_toBottomOf="@id/pilotNameTextView"
+        tools:text="YAVIN 4"
+        />
+
+    <ImageView
+        android:id="@+id/toImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/to"
+        android:src="@drawable/ic_arrow"
+        android:layout_marginLeft="@dimen/default_margin_double"
+        android:layout_marginStart="@dimen/default_margin_double"
+        app:layout_constraintBottom_toBottomOf="@id/pickUpTextView"
+        app:layout_constraintStart_toEndOf="@id/pickUpTextView"
+        app:layout_constraintTop_toTopOf="@id/pickUpTextView" />
+
+    <TextView
+        android:id="@+id/dropOffTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="2sp"
+        style="@style/App.TextAppearance.Body.Regular"
+
+        android:layout_marginLeft="@dimen/default_margin_double"
+        android:layout_marginStart="@dimen/default_margin_double"
+        app:layout_constraintBottom_toBottomOf="@id/pilotAvatarImageView"
+        app:layout_constraintStart_toEndOf="@id/toImageView"
+        app:layout_constraintTop_toBottomOf="@id/pilotNameTextView"
+        tools:text="NABOO" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/warm_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pilotAvatarImageView" />
+
+
+</android.support.constraint.ConstraintLayout>

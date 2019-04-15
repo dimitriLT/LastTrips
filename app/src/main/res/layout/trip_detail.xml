@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/detailToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <ImageView
+        android:id="@+id/detailPilotAvatarImageView"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_margin="@dimen/default_margin_triple"
+        android:contentDescription="@string/pilot_avatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailToolbar"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/detailPilotNameTextView"
+        style="@style/AppTheme.TextAppearance.Subheadline.Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/default_margin_triple"
+        android:layout_marginLeft="@dimen/default_margin_triple"
+        android:layout_marginRight="@dimen/default_margin_triple"
+        android:layout_marginStart="@dimen/default_margin_triple"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@id/detailPilotAvatarImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/detailPilotAvatarImageView"
+        app:layout_constraintTop_toTopOf="@id/detailPilotAvatarImageView"
+        tools:text="DARK VADOR" />
+
+    <View
+        android:id="@+id/separatorView"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="@dimen/default_margin_triple"
+        android:background="@color/warm_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailPilotAvatarImageView" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5" />
+
+    <TextView
+        android:id="@+id/departureTitleTextView"
+        style="@style/App.TextAppearance.Body.Regular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin_triple"
+        android:layout_marginStart="@dimen/default_margin_triple"
+        android:layout_marginTop="@dimen/default_margin_triple"
+        android:text="@string/departure"
+        app:layout_constraintEnd_toEndOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/separatorView" />
+
+    <TextView
+        android:id="@+id/departureValueTextView"
+        style="@style/AppTheme.TextAppearance.Subheadline.Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin_triple"
+        android:layout_marginStart="@dimen/default_margin_triple"
+        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintEnd_toEndOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/departureTitleTextView"
+        tools:text="YAVIN 4" />
+
+    <TextView
+        android:id="@+id/departureTimeValueTextView"
+        style="@style/App.TextAppearance.Body.Regular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin_triple"
+        android:layout_marginStart="@dimen/default_margin_triple"
+        android:layout_marginTop="@dimen/default_margin_extra_small"
+        app:layout_constraintEnd_toEndOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/departureValueTextView"
+        tools:text="2:12 PM" />
+
+    <TextView
+        android:id="@+id/arrivalTitleTextView"
+        style="@style/App.TextAppearance.Body.Regular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin_triple"
+        android:text="@string/arrival"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/separatorView" />
+
+    <TextView
+        android:id="@+id/arrivalValueTextView"
+        style="@style/AppTheme.TextAppearance.Subheadline.Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/arrivalTitleTextView"
+        tools:text="NABOO" />
+
+    <TextView
+        android:id="@+id/arrivalTimeValueTextView"
+        style="@style/App.TextAppearance.Body.Regular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin_extra_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/arrivalValueTextView"
+        tools:text="7:35 PM" />
+
+    <TextView
+        android:id="@+id/distanceTitleTextView"
+        style="@style/App.TextAppearance.Body.Regular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin_triple"
+        android:layout_marginStart="@dimen/default_margin_triple"
+        android:layout_marginTop="@dimen/default_margin_triple"
+        android:text="@string/distance"
+        app:layout_constraintEnd_toEndOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/departureTimeValueTextView" />
+
+    <TextView
+        android:id="@+id/distanceValueTextView"
+        style="@style/AppTheme.TextAppearance.Subheadline.Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin_triple"
+        android:layout_marginStart="@dimen/default_margin_triple"
+        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintEnd_toEndOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/distanceTitleTextView"
+        tools:text="2,478,572 KM" />
+
+    <TextView
+        android:id="@+id/durationTitleTextView"
+        style="@style/App.TextAppearance.Body.Regular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin_triple"
+        android:text="@string/duration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/arrivalTimeValueTextView" />
+
+    <TextView
+        android:id="@+id/durationValueTextView"
+        style="@style/AppTheme.TextAppearance.Subheadline.Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/durationTitleTextView"
+        tools:text="5:23:47" />
+
+    <TextView
+        android:id="@+id/ratingTitleTextView"
+        style="@style/App.TextAppearance.Body.Regular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin_triple"
+        android:layout_marginStart="@dimen/default_margin_triple"
+        android:layout_marginTop="@dimen/default_margin_triple"
+        android:text="@string/pilot_rating"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/distanceValueTextView" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="@style/ImageRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin_triple"
+        android:layout_marginStart="@dimen/default_margin_triple"
+        android:layout_marginTop="@dimen/default_margin"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:stepSize="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingTitleTextView" />
+
+</android.support.constraint.ConstraintLayout>

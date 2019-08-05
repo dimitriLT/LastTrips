@@ -2,13 +2,15 @@ package com.letorriellec.dimitri.trips.interactor
 
 import com.letorriellec.dimitri.trips.model.SpaceTravel
 import com.letorriellec.dimitri.trips.repository.SpaceTravelsRepository
-import io.reactivex.Observable
 
-class TripsInteractorImpl(
+class TripsUseCaseImpl(
     private val repository: SpaceTravelsRepository
-) : TripsInteractor {
+) : TripsUseCase {
 
-    override fun loadAlbums(): Observable<List<SpaceTravel>>? {
-        return repository.executeLoadSpaceTravels()
+    override suspend fun loadAlbums(): List<SpaceTravel>? {
+
+        val result = repository.executeLoadSpaceTravels()
+
+        return result
     }
 }

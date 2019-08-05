@@ -1,17 +1,16 @@
 package com.letorriellec.dimitri.trips.network
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.letorriellec.dimitri.trips.BuildConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class TripsRetrofit {
+class RetrofitFactory {
 
     companion object {
-
-        fun getInstance(): TripsApiService? {
+        fun getInstance(): RetrofitService? {
 
             val okHttpClient = OkHttpClient.Builder().addInterceptor { chain ->
                 val request = chain.request().newBuilder().header(
@@ -22,11 +21,10 @@ class TripsRetrofit {
             }.build()
 
             val retrofit = Retrofit.Builder().baseUrl(BuildConfig.API_ADDRESS)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create()).client(okHttpClient).build()
 
-            return retrofit.create(TripsApiService::class.java)
+            return retrofit.create(RetrofitService::class.java)
         }
     }
-
 }

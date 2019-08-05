@@ -1,10 +1,10 @@
 package com.letorriellec.dimitri.trips.ui
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
-import com.letorriellec.dimitri.trips.interactor.TripsInteractorImpl
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.letorriellec.dimitri.trips.interactor.TripsUseCaseImpl
 import com.letorriellec.dimitri.trips.model.HttpCallFailureException
 import com.letorriellec.dimitri.trips.model.NoNetworkException
 import com.letorriellec.dimitri.trips.model.ServerUnreachableException
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private lateinit var tripsRecyclerViewAdapter: TripsRecyclerViewAdapter
-    private lateinit var tripsPresenter : TripsPresenter
+    private lateinit var tripsPresenter: TripsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +34,12 @@ class MainActivity : AppCompatActivity() {
 
 
         val albumsLibraryRepository = SpaceTravelsRepositoryImpl(SpaceTravelsRemoteRepository())
-        val albumsLibraryInteractor = TripsInteractorImpl(albumsLibraryRepository)
+        val albumsLibraryInteractor = TripsUseCaseImpl(albumsLibraryRepository)
         tripsPresenter = TripsPresenterImpl(albumsLibraryInteractor)
 
         tripsPresenter.loadTrips()
+
     }
-
-
 
     private fun setDataInRecyclerView(it: List<SpaceTravelViewModel>) {
         tripsRecyclerViewAdapter.setData(it)

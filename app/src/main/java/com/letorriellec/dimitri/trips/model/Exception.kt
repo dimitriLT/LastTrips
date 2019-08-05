@@ -1,9 +1,9 @@
 package com.letorriellec.dimitri.trips.model
 
-open class NetworkException(error: Throwable): RuntimeException(error)
+open class NetworkException(error: Throwable) : RuntimeException(error)
 
-class NoNetworkException(error: Throwable): NetworkException(error)
+class NoNetworkException(error: Throwable) : NetworkException(error)
 
-class ServerUnreachableException(error: Throwable): NetworkException(error)
+class ServerUnreachableException(error: Throwable) : NetworkException(error)
 
-class HttpCallFailureException(error: Throwable): NetworkException(error)
+class HttpCallFailureException(error: Throwable) : NetworkException(error)

@@ -1,44 +1,45 @@
 package com.letorriellec.dimitri.trips.presenter
 
-import com.letorriellec.dimitri.trips.interactor.TripsInteractor
+import com.letorriellec.dimitri.trips.interactor.TripsUseCase
 import com.letorriellec.dimitri.trips.model.SpaceTravel
 import com.letorriellec.dimitri.trips.model.SpaceTravelViewModel
 import com.letorriellec.dimitri.trips.ui.TripsView
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
-import io.reactivex.rxkotlin.addTo
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.*
+import retrofit2.HttpException
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class TripsPresenterImpl(
-    private val tripsInteractor: TripsInteractor
+    private val tripsUseCase: TripsUseCase
 ) : BasePresenter<TripsView>, TripsPresenter {
 
 
     private var view: TripsView? = null
     private var compositeDisposable = CompositeDisposable()
 
+    private val mjob = Job()
+    private val scope = CoroutineScope(Dispatchers.IO + mjob)
+
+
+    private val handler = CoroutineExceptionHandler { _, throwable ->
+        presentError(throwable)
+    }
+
     override fun onViewAttached(view: TripsView) {
         this.view = view
+
     }
 
     override fun loadTrips() {
-        val disposable : Disposable? =
-            tripsInteractor.loadAlbums()
-                ?.subscribeOn(Schedulers.io())
-                ?.observeOn(
-            AndroidSchedulers.mainThread()
-        )?.subscribe({ result ->
-            presentTrips(result)
-        }, { error -> presentError(error) }
 
-        )
-        disposable?.let { compositeDisposable.add(it) }
-        disposable?.addTo(compositeDisposable)
+        scope.launch(handler) {
+            getFromCallback()
+
+        }
+
     }
 
     override fun presentError(cause: Throwable) {
@@ -47,6 +48,7 @@ class TripsPresenterImpl(
 
     override fun onViewDetach() {
         compositeDisposable.dispose()
+        mjob.cancel()
     }
 
     override fun presentEmpty() {
@@ -64,10 +66,9 @@ class TripsPresenterImpl(
     private fun SpaceTravel.toViewModel() = SpaceTravelViewModel(
         pilotName = pilot.name,
         pilotAvatar = pilot.avatar,
-        distance = NumberFormat.getNumberInstance(Locale.US)
-                   .format(distance.value) + " " + distance.unit,
+        distance = NumberFormat.getNumberInstance(Locale.FRANCE).format(distance.value) + " " + distance.unit,
         arrivalTime = getTimeFromDate(drop_off.date),
-        arrivalName =  drop_off.name,
+        arrivalName = drop_off.name,
         duration = duration.toString(),
         departureName = pick_up.name,
         departureTime = getTimeFromDate(pick_up.date),
@@ -75,11 +76,30 @@ class TripsPresenterImpl(
 
     )
 
-    private fun getTimeFromDate(date : String) : String{
+    private fun getTimeFromDate(date: String): String {
 
-        return SimpleDateFormat("H:mm", Locale.getDefault())
-        .format((SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX", Locale.US)
-        .parse(date)))
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+        val parseFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+
+        return parseFormat.format(dateFormat.parse(date))
+
+    }
+
+    private suspend fun getFromCallback() {
+        val response = tripsUseCase.loadAlbums()
+
+        if (response != null) {
+            withContext(Dispatchers.Main) {
+                try {
+                    presentTrips(response)
+
+                } catch (e: HttpException) {
+                    e.cause?.let { presentError(it) }
+                } catch (e: Throwable) {
+                    presentError(e)
+                }
+            }
+        }
     }
 
 }

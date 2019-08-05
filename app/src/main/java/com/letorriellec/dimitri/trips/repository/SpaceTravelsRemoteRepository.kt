@@ -1,13 +1,13 @@
 package com.letorriellec.dimitri.trips.repository
 
-import com.letorriellec.dimitri.trips.network.TripsRetrofit
 import com.letorriellec.dimitri.trips.model.SpaceTravel
-import io.reactivex.Observable
+import com.letorriellec.dimitri.trips.network.RetrofitFactory
+import retrofit2.Response
 
-class SpaceTravelsRemoteRepository{
+class SpaceTravelsRemoteRepository {
 
-    fun getSpaceTravels(): Observable<List<SpaceTravel>>? {
-        return TripsRetrofit.getInstance()?.loadTrips()
+    suspend fun getSpaceTravelsAsync(): Response<List<SpaceTravel>?>? {
+        return RetrofitFactory.getInstance()?.loadTripsAsync()?.await()
     }
 
 }

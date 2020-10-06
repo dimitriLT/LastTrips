@@ -9,8 +9,6 @@ class TripsUseCaseImpl(
 
     override suspend fun loadAlbums(): List<SpaceTravel>? {
 
-        val result = repository.executeLoadSpaceTravels()
-
-        return result
+        return repository.executeLoadSpaceTravels()
     }
 }

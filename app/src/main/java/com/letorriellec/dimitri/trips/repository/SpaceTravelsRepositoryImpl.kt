@@ -13,9 +13,7 @@ class SpaceTravelsRepositoryImpl(
     override suspend fun executeLoadSpaceTravels(): List<SpaceTravel>? {
         try {
 
-            val result = spaceTravelsRemoteRepository.getSpaceTravelsAsync()?.body()
-
-            return result
+            return spaceTravelsRemoteRepository.getSpaceTravelsAsync()?.body()
 
         } catch (e: HttpException) {
             throw NetworkException(e)
